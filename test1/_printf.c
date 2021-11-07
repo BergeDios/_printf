@@ -12,35 +12,35 @@ int _printf(const char *format, ...)
 	va_list arguments;
 	char* (*func)(va_list);
 
-	if (!format || !format[i] || (format[i] == '%' && !format[i + 1]))
-		return (-1);
 	va_start(arguments, format);
 	s_semifinal = malloc(sizeof(char) * 1024);
 	if (!s_semifinal)
 		return (-1);
-	for (; format && format[i]; i++)
+	for (; format && format[i]; i++, f++, total_length++)
 	{
+		if (!format || !format[i] || (format[i] == '%' && !format[i + 1]))
+			return (-1);
 		if (format[i] == '%')
 		{
 			i++;
 			if (format[i] != '%')
 			{
 				func = get_func(format[i]);
+				if (!func)
+				{
+					_printf("Error, wrong argument datatype for module identifier\n");
+					return (-1);
+				}
 				k = func(arguments);
-				total_length = (total_length + (_strlen(k)));
+				total_length = (total_length + (_strlen(k)) - 1);
 				_strcat(s_semifinal, k);
-				f = (f + (_strlen(k)));
+				f = (f + (_strlen(k)) - 1);
 			}
-			s_semifinal[f] = '%';
-			total_length++;
-			f++;
+			else
+				s_semifinal[f] = '%';
 		}
 		else
-		{
 			s_semifinal[f] = format[i];
-			total_length++;
-			f++;
-		}
 	}
 	s_final = realloc(s_semifinal, (total_length));
 	write(1, s_final, total_length);
