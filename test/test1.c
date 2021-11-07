@@ -6,6 +6,6 @@
  */
 int main(void)
 {
-	_printf("hello, i want to smoked weed\n");
+	_printf("%s\n", "bergessio");
 	return (0);
 }

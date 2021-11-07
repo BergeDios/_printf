@@ -3,74 +3,46 @@
 /**
  * _printf - produces output acccording to a format
  * @format: character string composed of 0 or more directives
- * @print_c: prints char
  * Return: total length of final string
  */
 int _printf(const char *format, ...)
 {
-	unsigned int total_length = 0, e = 0, f = 0, i = 0, ch, j = 0;
-	char *string_final;
-	char *array_arg[];
+	unsigned int total_length = 0, f = 0, i = 0;
+	char *s_semifinal, *s_final;
 	va_list arguments;
+	char* (*func)(va_list);
 
-	char * (*fun_array[])(va_list arguments) = {print_c};
+	s_semifinal = malloc(sizeof(char) * 1024);
+	if (!s_semifinal)
+		return (-1);
 	va_start(arguments, format);
 	if (!format || !format[i] || (format[i] == '%' && !format[i + 1]))
+	{
+		va_end(arguments);
+		free(s_semifinal);
 		return (-1);
+	}
 	for (; format && format[i]; i++)
 	{
 		if (format[i] == '%')
 		{
 			i++;
-			/*array of pointers to functions call with format[i]*/
-			if (format[i] == 'c')
-			{
-				ch = 0;
-				array_arg[j] = (*fun_array[ch])(arguments);
-				j++;
-				total_length++;
-			}
+			func = get_func(format[i]);
+			total_length += _strlen(func(arguments));
+			_strcat(s_semifinal, (func(arguments)));
+			f = (f + (_strlen(func(arguments))));
 		}
 		else
-			total_length++;
-	}
-	i = 0;
-	j = 0;
-	string_final = malloc(total_length);
-	if (!string_final)
-		return (-1);
-	for (; format && format[i]; i++)
-	{
-		if (format[i] != '%')
 		{
-			string_final[f] = format[i];
+			s_semifinal[f] = format[i];
+			total_length++;
 			f++;
 		}
-		else
-		{
-			i++;
-			while (array_arg[e][j])
-			{
-				string_final[f] = array_arg[e][j];
-				j++;
-				f++;
-			}
-			e++;
-		}
 	}
-	write(1, string_final, total_length);
+	s_final = realloc(s_semifinal, (total_length + 1));
+	write(1, s_final, total_length);
 	va_end(arguments);
-	return (0);
-}
+	free(s_final);
 
-/**
- * print_c - prints char
- * @arguments: va_list
- * Return: string of 1 char
- */
-char *print_c(va_list arguments)
-{
-	char *c = va_arg(arguments, char *);
-
-	return (c);
+	return (_strlen(s_final));
 }
