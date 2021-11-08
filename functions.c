@@ -10,7 +10,7 @@ char *print_c(va_list arguments)
 	char e;
 
 	e = va_arg(arguments, int);
-	if (e == 0)
+	if (e == '\0')
 		e = '\0';
 
 	s = malloc(sizeof(char) * 2);
@@ -31,11 +31,15 @@ char *print_s(va_list arguments)
 	char *s;
 	char *s2;
 
-	s = va_arg(arguments, char *);
-	if (s == NULL)
-		s = "(nil)";
-	s2 = malloc(sizeof(char) * (_strlen(s)));
-	if (s2)
-		_strcpy(s2, s);
-	return (s2);
+	if (arguments)
+	{
+		s = va_arg(arguments, char *);
+		if (s == NULL)
+			s = "(null)";
+		s2 = malloc(sizeof(char) * (_strlen(s)));
+		if (s2)
+			_strcpy(s2, s);
+		return (s2);
+	}
+	exit(-1);
 }
