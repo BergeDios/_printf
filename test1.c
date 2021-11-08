@@ -6,6 +6,6 @@
  */
 int main(void)
 {
-	_printf("%s\n", "bergessio");
+	_printf("hola, %c%a%c%c, %s,% adios, %%\n", 'J', 'v', 'i', "funciona");
 	return (0);
 }

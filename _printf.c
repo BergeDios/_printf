@@ -7,48 +7,37 @@
  */
 int _printf(const char *format, ...)
 {
-	unsigned int total_length = 0, i = 0, ch, p2;
-	char *string_final;
-	char *array_arg[];
+	int total_length = 0, f = 0, i = 0;
+	char *s_semifinal, *s_final, *k;
 	va_list arguments;
-
-	void (*fun_array[])(va_list arguments) = {c, s};
+	char* (*func)(va_list);
 
 	va_start(arguments, format);
-
-	if (!format || format[i] == NULL ||
-			(format[i] == '%' && format[i + 1] == NULL))
+	s_semifinal = malloc(sizeof(char) * 1024);
+	if (!s_semifinal)
 		return (-1);
-	for (; format && format[i]; i++)
+	for (; format && format[i]; i++, f++, total_length++)
 	{
-		if (format[i] == '%')
+		if (!format || !format[i] || (format[i] == '%' && !format[i + 1]))
+			return (-1);
+		if (format[i] == '%' && (format[i + 1] == 'c'
+			|| format[i + 1] == 's' || format[i + 1] == '%'))
 		{
-			i++;
-			/*array of pointers to functions call with format[i]*/
-			if (format[i] == 'c')
+			if (format[i + 1] != '%')
 			{
+				func = get_func(format[i + 1]), k = func(arguments);
+				total_length = (total_length + (_strlen(k)) - 1);
+				_strcat(s_semifinal, k);
+				f = (f + (_strlen(k)) - 1), free(k), i++;
 			}
+			else
+				s_semifinal[f] = '%', i++;
 		}
 		else
-			total_length++;
-
+			s_semifinal[f] = format[i];
 	}
-	char *string_final = malloc(total_length);
-
-	if (!string_final)
-		return (NULL);
-	_strcpy(string_final, format);
-	write(1, string_final, total_length);
-}
-/**
- * c - prints char
- * @arguments: va_list
- * Return: void
- */
-void c(va_list arguments)
-{
-	char *c = va_arg(arguments, char);
-
-	if (_strlen(c) == 1)
-		_putchar(c);
+	s_final = realloc(s_semifinal, (total_length));
+	write(1, s_final, total_length);
+	va_end(arguments), free(s_final);
+	return (total_length);
 }
