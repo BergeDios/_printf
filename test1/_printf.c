@@ -20,31 +20,24 @@ int _printf(const char *format, ...)
 	{
 		if (!format || !format[i] || (format[i] == '%' && !format[i + 1]))
 			return (-1);
-		if (format[i] == '%')
+		if (format[i] == '%' && (format[i + 1] == 'c'
+			|| format[i + 1] == 's' || format[i + 1] == '%'))
 		{
-			i++;
-			if (format[i] != '%')
+			if (format[i + 1] != '%')
 			{
-				func = get_func(format[i]);
-				if (!func)
-				{
-					_printf("Error, wrong argument datatype for module identifier\n");
-					return (-1);
-				}
-				k = func(arguments);
+				func = get_func(format[i + 1]), k = func(arguments);
 				total_length = (total_length + (_strlen(k)) - 1);
 				_strcat(s_semifinal, k);
-				f = (f + (_strlen(k)) - 1);
+				f = (f + (_strlen(k)) - 1), free(k), i++;
 			}
 			else
-				s_semifinal[f] = '%';
+				s_semifinal[f] = '%', i++;
 		}
 		else
 			s_semifinal[f] = format[i];
 	}
 	s_final = realloc(s_semifinal, (total_length));
 	write(1, s_final, total_length);
-	va_end(arguments);
-	free(s_final);
+	va_end(arguments), free(s_final);
 	return (total_length);
 }
