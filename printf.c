@@ -36,8 +36,11 @@ int _printf(const char *format, ...)
 		else
 			s_semifinal[f] = format[i];
 	}
-	s_final = realloc(s_semifinal, (total_length));
+	s_final = malloc(sizeof(char) * total_length);
+	if (!s_final)
+		return (-1);
+	_strcpy(s_final, s_semifinal);
 	write(1, s_final, total_length);
-	va_end(arguments), free(s_final);
+	va_end(arguments), free(s_final), free(s_semifinal);
 	return (total_length);
 }
