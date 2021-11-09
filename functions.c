@@ -90,7 +90,10 @@ int print_r(va_list arguments)
 
 	s = va_arg(arguments, char *);
 	if (!s)
+	{
+		_printf("(null)");
 		return (-1);
+	}
 	for (j = 0; s[j] != 0; j++)
 	i = j;
 	for (j--; j >= 0; j--)
