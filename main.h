@@ -16,16 +16,16 @@
 typedef struct types
 {
 	char fi;
-	char *(*func)(va_list arguments);
+	int (*func)(va_list arguments, char *s_semifinal, int  total_length, int f);
 }types;
 	
 int _printf(const char *format, ...);
 int _putchar(char c);
 int _strlen(char *s);
 char *_strcpy(char *dest, const char *src);
-char *print_c(va_list arguments);
-char *print_s(va_list arguments);
+int print_c(va_list arguments, char *s_semifinal, int total_length, int f);
+int print_s(va_list arguments, char *s_semifinal, int total_length, int f);
 char *_strcat(char *dest ,char *src);
-char* (*get_func(char s))(va_list);
+int (*get_func(char s))(va_list, char *, int, int);
 
 #endif

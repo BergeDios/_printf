@@ -8,9 +8,9 @@
 int _printf(const char *format, ...)
 {
 	int total_length = 0, f = 0, i = 0;
-	char *s_semifinal, *s_final, *k;
+	char *s_semifinal, *s_final;
 	va_list arguments;
-	char* (*func)(va_list);
+	int (*func)(va_list, char *, int, int);
 
 	va_start(arguments, format), s_semifinal = malloc(sizeof(char) * 1024);
 	if (!s_semifinal)
@@ -30,12 +30,9 @@ int _printf(const char *format, ...)
 		{
 			if (format[i + 1] != '%')
 			{
-				func = get_func(format[i + 1]), k = func(arguments);
-				if (k[0] == '\0')
-					return (-1);
-				total_length = (total_length + (_strlen(k)) - 1);
-				_strcat(s_semifinal, k);
-				f = (f + (_strlen(k)) - 1), free(k), i++;
+				func = get_func(format[i + 1]);
+				total_length = (func(arguments, s_semifinal, total_length, f) - 1);
+				f = total_length, i++;
 			}
 			else
 				s_semifinal[f] = '%', i++;
@@ -44,7 +41,7 @@ int _printf(const char *format, ...)
 			s_semifinal[f] = format[i];
 	}
 	s_final = realloc(s_semifinal, total_length);
-	_strcpy(s_final, s_semifinal), write(1, s_final, total_length);
+	write(1, s_final, total_length);
 	va_end(arguments), free(s_final);
 	return (total_length);
 }
