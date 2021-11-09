@@ -7,37 +7,28 @@
  */
 int _printf(const char *format, ...)
 {
-	int total_length = 0, i = 0, k;
+	int total_length = 0, i = 0;
 	va_list arguments;
-	types ide[] = {
-		{"c", print_c},
-		{"s", print_s},
-		{NULL, NULL}
-	};
+	int (*func)(va_list);
 
-	if (!format)
-		return (-1);
 	va_start(arguments, format);
+	if (!format || (format[i] == '%' && !format[i + 1]))
+		return (-1);
 	for (; format[i]; i++)
 	{
-		if (format[i] == '%')
+		if (format[i] == '%' && format[i + 1] == '\0')
+			return (-1);
+		if (format[i] == '%' && (format[i + 1] == 'c'
+			|| format[i + 1] == 's' || format[i + 1] == '%'))
 		{
-			if (format[i + 1] == '\0')
-				return (-1);
-			if (format[i + 1] == '%')
-				_putchar('%'), i++, total_length++;
-			else
+			if (format[i + 1] != '%')
 			{
-				for (k = 0; ide[k].fi; k++)
-				{
-					if (ide[k].fi[0] == format[i + 1])
-					{
-						total_length += ide[k].func(arguments);
-						i++;
-					}
-				}
+				func = get_func(format[i + 1]);
+				total_length += func(arguments);
+				i++;
 			}
-
+			else
+				_putchar('%'), i++, total_length++;
 		}
 		else
 			_putchar(format[i]), total_length++;

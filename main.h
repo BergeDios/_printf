@@ -15,7 +15,7 @@
 
 typedef struct types
 {
-	char *fi;
+	char fi;
 	int (*func)(va_list arguments);
 }types;
 	
