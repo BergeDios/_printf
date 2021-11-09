@@ -11,6 +11,8 @@ int (*get_func(char s))(va_list)
 	types ide[] = {
 		{'c', print_c},
 		{'s', print_s},
+		{'d', print_d},
+		{'i', print_d},
 		{'\0', NULL}
 	};
 
