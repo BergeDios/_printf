@@ -1,5 +1,5 @@
 #include "main.h"
-
+#define BUFFER 1024
 /**
  * _printf - produces output acccording to a format
  * @format: character string composed of 0 or more directives
