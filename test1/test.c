@@ -213,7 +213,7 @@ int main(void)
     cont = cont + output(a,b);
     printf("\n---------------\n");*/
     printf("Test 22");
-    _printf("%s%s%s%s%s%s\n", "Pan ", "ap", "hp", "bp", "cp", " Pan");
+    _printf("%s%s%s%s%s\n", "Pan ", "ap", "bp", "cp", " Pan");
     printf("\nexpected: ");
     a = printf("%s%c%c%c%c%s", "Pan ", 'c', 'a', 'c', 'a', " Pan");
     printf("\nobtained: ");

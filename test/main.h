@@ -26,6 +26,6 @@ char *_strcpy(char *dest, const char *src);
 int print_c(va_list arguments);
 int print_s(va_list arguments);
 char *_strcat(char *dest ,char *src);
-int (*get_func(char s))(va_list, int);
+int (*get_func(char s))(va_list);
 
 #endif

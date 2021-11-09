@@ -7,11 +7,12 @@
 int print_c(va_list arguments)
 {
 	char e;
+	int i = 0;
 
 	e = va_arg(arguments, int);
 	_putchar(e);
-
-	return (1);
+	i++;
+	return (i);
 }
 /**
  * print_s - returns a string

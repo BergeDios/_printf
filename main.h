@@ -25,6 +25,8 @@ int _strlen(char *s);
 char *_strcpy(char *dest, const char *src);
 int print_c(va_list arguments, char *s_semifinal, int total_length, int f);
 int print_s(va_list arguments, char *s_semifinal, int total_length, int f);
+int print_d(va_list arguments, char *s_semifinal, int total_length, int f);
+int recursive_d(long int n, char *s_semifinal, int total_length, int f);
 char *_strcat(char *dest ,char *src);
 int (*get_func(char s))(va_list, char *, int, int);
 
