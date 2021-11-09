@@ -16,7 +16,10 @@ int _printf(const char *format, ...)
 	if (!s_semifinal)
 		return (-1);
 	if (!format || (format[i] == '%' && !format[i + 1]))
+	{
+		free(s_semifinal);
 		return (-1);
+	}
 	for (; format && format[i]; i++, f++, total_length++)
 	{
 		if (format[i] == '%' && format[i + 1] == '\0')

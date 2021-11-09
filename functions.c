@@ -12,8 +12,6 @@ int print_c(va_list arguments, char *s_semifinal, int total_length, int f)
 	char e;
 
 	e = va_arg(arguments, int);
-	if (e == '\0')
-		return (1);
 	s_semifinal[f] = e;
 	total_length++;
 	return (total_length);
