@@ -89,7 +89,8 @@ int print_r(va_list arguments)
 	int j, i;
 
 	s = va_arg(arguments, char *);
-
+	if (!s)
+		return (-1);
 	for (j = 0; s[j] != 0; j++)
 	i = j;
 	for (j--; j >= 0; j--)
