@@ -20,7 +20,8 @@ int _printf(const char *format, ...)
 			return (-1);
 		if (format[i] == '%' && (format[i + 1] == 'c'
 			|| format[i + 1] == 's' || format[i + 1] == '%'
-			|| format[i + 1] == 'd' || format[i + 1] == 'i'))
+			|| format[i + 1] == 'd' || format[i + 1] == 'i'
+			|| format[i + 1] == 'r'))
 		{
 			if (format[i + 1] != '%')
 			{
