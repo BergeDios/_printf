@@ -5,7 +5,7 @@
  * @s: character identifier
  * Return: correct function
  */
-int (*get_func(char s))(va_list, int)
+int (*get_func(char s))(va_list)
 {
 	int i = 0;
 	types ide[] = {

@@ -35,7 +35,7 @@ int output(int a, int b)
 int main(void)
 {
     int a, b, cont = 0;
-    BLUE;
+    /*RED;
     printf("\nTEST WITHOUT ARGUMENTS:\n\n");
     RESET;
     printf("Test 1");
@@ -211,16 +211,17 @@ int main(void)
     fflush(stdout);
     b = _printf("%%%s%%%", "No me quiero ir Sr. Stark :(");
     cont = cont + output(a,b);
-    printf("\n---------------\n");
-    /*printf("Test 22");
+    printf("\n---------------\n");*/
+    printf("Test 22");
+    _printf("%s%s%s%s%s%s\n", "Pan ", "ap", "hp", "bp", "cp", " Pan");
     printf("\nexpected: ");
     a = printf("%s%c%c%c%c%s", "Pan ", 'c', 'a', 'c', 'a', " Pan");
     printf("\nobtained: ");
     fflush(stdout);
     b = _printf("%s%c%c%c%c%s", "Pan ", 'c', 'a', 'c', 'a', " Pan");
     cont = cont + output(a,b);
-    printf("\n---------------\n");*/
-    printf("Test 23");
+    printf("\n---------------\n");
+    /*printf("Test 23");
     printf("\nexpected: ");
     a = printf("D%s Ellia%s", "enis", "s");
     printf("\nobtained: ");
@@ -298,6 +299,6 @@ int main(void)
         RED;
         printf ("\n\n30 CASES CHECKED, %d ERRORS.\n\n", cont);
         RESET;
-    }
+    }*/
     return (cont);
 }

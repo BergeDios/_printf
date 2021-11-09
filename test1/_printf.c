@@ -9,7 +9,7 @@ int _printf(const char *format, ...)
 {
 	int total_length = 0, i = 0;
 	va_list arguments;
-	int (*func)(va_list, int);
+	int (*func)(va_list);
 
 	if (!format || (format[i] == '%' && !format[i + 1]))
 		return (-1);
@@ -23,7 +23,7 @@ int _printf(const char *format, ...)
 			if (format[i + 1] != '%')
 			{
 				func = get_func(format[i + 1]);
-				total_length = func(arguments, total_length);
+				total_length += func(arguments);
 				i++;
 			}
 			else
