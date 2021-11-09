@@ -11,6 +11,7 @@ int _printf(const char *format, ...)
 	va_list arguments;
 	int (*func)(va_list);
 
+	va_start(arguments, format);
 	if (!format || (format[i] == '%' && !format[i + 1]))
 		return (-1);
 	for (; format[i]; i++)
