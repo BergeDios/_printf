@@ -9,14 +9,14 @@ int (*get_func(char s))(va_list)
 {
 	int i = 0;
 	types ide[] = {
-		{"c", print_c},
-		{"s", print_s},
-		{NULL, NULL}
+		{'c', print_c},
+		{'s', print_s},
+		{'\0', NULL}
 	};
 
 	while (ide[i].fi)
 	{
-		if (ide[i].fi[0] == s)
+		if (ide[i].fi == s)
 			return (ide[i].func);
 		i++;
 	}

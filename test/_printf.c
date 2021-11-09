@@ -7,37 +7,40 @@
  */
 int _printf(const char *format, ...)
 {
-	int total_length = 0, f = 0, i = 0;
-	char *s_semifinal, *s_final, *k;
+	int total_length = 0, i = 0, k;
 	va_list arguments;
-	char* (*func)(va_list);
+	types ide[] = {
+		{"c", print_c},
+		{"s", print_s},
+		{NULL, NULL}
+	};
 
-	va_start(arguments, format);
-	s_semifinal = malloc(sizeof(char) * 1024);
-	if (!s_semifinal)
+	if (!format)
 		return (-1);
-	for (; format && format[i]; i++, f++, total_length++)
+	for (; format[i]; i++)
 	{
-		if (!format || !format[i] || (format[i] == '%' && !format[i + 1]))
-			return (-1);
-		if (format[i] == '%' && (format[i + 1] == 'c'
-			|| format[i + 1] == 's' || format[i + 1] == '%'))
+		if (format[i] == '%')
 		{
-			if (format[i + 1] != '%')
-			{
-				func = get_func(format[i + 1]), k = func(arguments);
-				total_length = (total_length + (_strlen(k)) - 1);
-				_strcat(s_semifinal, k);
-				f = (f + (_strlen(k)) - 1), free(k), i++;
-			}
+			if (format[i + 1] == '\0')
+				return (-1);
+			if (format[i + 1] == '%')
+				_putchar('%'), i++, total_length++;
 			else
-				s_semifinal[f] = '%', i++;
+			{
+				for (k = 0; ide[k].fi; k++)
+				{
+					if (ide[k].fi[0] == format[i + 1])
+					{
+						total_length += ide[k].func(arguments);
+						i++;
+					}
+				}
+			}
+
 		}
 		else
-			s_semifinal[f] = format[i];
+			_putchar(format[i]), total_length++;
 	}
-	s_final = realloc(s_semifinal, (total_length));
-	write(1, s_final, total_length);
-	va_end(arguments), free(s_final);
+	va_end(arguments);
 	return (total_length);
 }

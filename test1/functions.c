@@ -11,7 +11,6 @@ int print_c(va_list arguments)
 
 	e = va_arg(arguments, int);
 	_putchar(e);
-	i++;
 	return (i);
 }
 /**
