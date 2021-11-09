@@ -13,6 +13,8 @@ int (*get_func(char s))(va_list)
 		{'s', print_s},
 		{'d', print_d},
 		{'i', print_d},
+		{'r', print_r},
+		{'R', print_rot},
 		{'\0', NULL}
 	};
 

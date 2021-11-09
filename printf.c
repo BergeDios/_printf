@@ -1,5 +1,5 @@
 #include "main.h"
-
+#define BUFFER 1024
 /**
  * _printf - produces output acccording to a format
  * @format: character string composed of 0 or more directives
@@ -20,7 +20,8 @@ int _printf(const char *format, ...)
 			return (-1);
 		if (format[i] == '%' && (format[i + 1] == 'c'
 			|| format[i + 1] == 's' || format[i + 1] == '%'
-			|| format[i + 1] == 'd' || format[i + 1] == 'i'))
+			|| format[i + 1] == 'd' || format[i + 1] == 'i'
+			|| format[i + 1] == 'r' || format[i + 1] == 'R'))
 		{
 			if (format[i + 1] != '%')
 			{
