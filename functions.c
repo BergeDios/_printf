@@ -26,11 +26,18 @@ int print_s(va_list arguments)
 	int i = 0;
 
 	s = va_arg(arguments, char *);
-	if (s == NULL)
-		s = "(null)";
-	for (; s[i] != '\0'; i++)
+	if (s)
 	{
-		_putchar(s[i]);
+		for (; s[i] != '\0'; i++)
+		{
+			_putchar(s[i]);
+		}
+	}
+	else
+	{
+		s = "(null)";
+		for (; s[i] != '\0'; i++)
+			_putchar(s[i]);
 	}
 	return (i);
 }
