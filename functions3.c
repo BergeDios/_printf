@@ -34,3 +34,34 @@ int print_rot(va_list arguments)
 	}
 	return (count);
 }
+/**
+ * print_bi - prints int to binary
+ * @arguments: va_list
+ * Return: length or null
+ */
+int print_bi(va_list arguments)
+{
+	unsigned int i = 0, num = va_arg(arguments, int);
+
+	if (num > 0)
+		i = recursion_b(num);
+	return (i);
+}
+/**
+ * recursion_b - prints int to binary
+ * @num: unsigned int argument
+ * Return: int or null
+ */
+int recursion_b(unsigned int num)
+{
+	int i = 0;
+
+	if (num > 0)
+	{
+		i += recursion_b(num / 2);
+		i += _putchar((num % 2) + '0');
+	}
+	else
+		return (-1);
+	return (i);
+}
