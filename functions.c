@@ -30,14 +30,10 @@ int print_s(va_list arguments, char *s_semifinal, int total_length, int f)
 	char *s;
 	int i = 0;
 
-	if (arguments)
-	{
-		s = va_arg(arguments, char *);
-		if (s == NULL)
-			s = "(null)";
-		for (; s[i] != '\0'; i++, f++, total_length++)
-			s_semifinal[f] = s[i];
-		return (total_length);
-	}
-	return (-1);
+	s = va_arg(arguments, char *);
+	if (s == NULL)
+		s = "(null)";
+	for (; s[i] != '\0'; i++, f++, total_length++)
+		s_semifinal[f] = s[i];
+	return (total_length);
 }
