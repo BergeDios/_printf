@@ -15,7 +15,7 @@ int _printf(const char *format, ...)
 	va_start(arguments, format), s_semifinal = malloc(sizeof(char) * 1024);
 	if (!s_semifinal)
 		return (-1);
-	if (!format || !format[i] || (format[i] == '%' && !format[i + 1]))
+	if (!format || (format[i] == '%' && !format[i + 1]))
 		return (-1);
 	for (; format && format[i]; i++, f++, total_length++)
 	{
