@@ -1,5 +1,5 @@
 # _printf
-```_printf``` is a replica of the printf function of C. It was created as a side project for Holberton School Uruguay by 2 students from cohort 16, Santiago Goyret and Mateo victorica on november 2021.
+```_printf``` is a replica of the printf function of C. It was created as a side project for Holberton School Uruguay by 2 students from cohort 16, Santiago Goyret and Mateo Victorica on november 2021.
 
 **Prototype:** ```int _printf(const char *, ...);```
 
