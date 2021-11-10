@@ -94,7 +94,7 @@ int print_r(va_list arguments)
 		_printf("(null)");
 		return (-1);
 	}
-	for (j = 0; s[j] != 0; j++)
+	j = _strlen(s);
 	for (j--; j >= 0; j--)
 		_putchar(s[j]);
 	return (_strlen(s));
