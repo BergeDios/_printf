@@ -45,7 +45,7 @@ int print_bi(va_list arguments)
 
 	if (num > 0)
 		i = recursion_b(num);
-	return (i);
+	return (i + 1);
 }
 /**
  * recursion_b - prints int to binary
