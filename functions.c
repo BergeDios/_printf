@@ -86,7 +86,7 @@ int print_s(va_list arguments)
 int print_r(va_list arguments)
 {
 	char *s;
-	int j, i;
+	int j;
 
 	s = va_arg(arguments, char *);
 	if (!s)
@@ -95,8 +95,7 @@ int print_r(va_list arguments)
 		return (-1);
 	}
 	for (j = 0; s[j] != 0; j++)
-	i = j;
 	for (j--; j >= 0; j--)
 		_putchar(s[j]);
-	return (i);
+	return (_strlen(s));
 }
