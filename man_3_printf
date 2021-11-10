@@ -44,19 +44,29 @@ Prints a string converted to rot13
 .B %
 A '%' is written but no argument is converted. The complete version specification is '%%'
 .SH EXAMPLE
-To print the day of the year, where weekday and month are pointers to strings and day and year are integers:
 
 #include "main.h"
 
-_printf("%s, %s %d, %d\\n", weekday, month, day, year);
-
-_printf("%c%c%c%c\n", h, o, l, a);
-
+_printf("%s, %s %d, %d\\n", weekday, month, 10, 1997);
+.TP
+Output: weekday, month, 10, 1997
+.TP
+_printf("%c%c%c%c\\n", h, o, l, a);
+.TP
+Output: hola
+.TP
 _printf("%% %i, decimal and %b binary", 100, 100);
-
+.TP
+Output: % 100, decimal and 1100100 binary
+.TP
 _printf("Hello in rot13 is:%R", Hello);
-
+.TP
+Output: Hello in rot13 is Ubyn
+.TP
 _printf("Hello reversed is:%r", Hello);
+.TP
+Output: Hello reversed is: olleH
+
 .SH SEE ALSO
 .I printf(3)
 .SH BUGS
